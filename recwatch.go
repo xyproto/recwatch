@@ -1,8 +1,7 @@
-package main
+package recwatch
 
 import (
 	"errors"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -32,60 +31,19 @@ func NewRecursiveWatcher(path string) (*RecursiveWatcher, error) {
 	rw.Folders = make(chan string, len(folders))
 
 	for _, folder := range folders {
-		rw.AddFolder(folder)
+		if err = rw.AddFolder(folder); err != nil {
+			return nil, err
+		}
 	}
 	return rw, nil
 }
 
-func (watcher *RecursiveWatcher) AddFolder(folder string) {
-	err := watcher.Add(folder)
-	if err != nil {
-		log.Println("Error watching: ", folder, err)
+func (watcher *RecursiveWatcher) AddFolder(folder string) error {
+	if err := watcher.Add(folder); err != nil {
+		return err
 	}
 	watcher.Folders <- folder
-}
-
-func (watcher *RecursiveWatcher) Run(debug bool) {
-	go func() {
-		for {
-			select {
-			case event := <-watcher.Events:
-				// create a file/directory
-				if event.Op&fsnotify.Create == fsnotify.Create {
-					fi, err := os.Stat(event.Name)
-					if err != nil {
-						// eg. stat .subl513.tmp : no such file or directory
-						if debug {
-							DebugError(err)
-						}
-					} else if fi.IsDir() {
-						if debug {
-							DebugMessage("Detected new directory %s", event.Name)
-						}
-						if !shouldIgnoreFile(filepath.Base(event.Name)) {
-							watcher.AddFolder(event.Name)
-						}
-					} else {
-						if debug {
-							DebugMessage("Detected new file %s", event.Name)
-						}
-						watcher.Files <- event.Name // created a file
-					}
-				}
-
-				if event.Op&fsnotify.Write == fsnotify.Write {
-					// modified a file, assuming that you don't modify folders
-					if debug {
-						DebugMessage("Detected file modification %s", event.Name)
-					}
-					watcher.Files <- event.Name
-				}
-
-			case err := <-watcher.Errors:
-				log.Println("error", err)
-			}
-		}
-	}()
+	return nil
 }
 
 // Subfolders returns a slice of subfolders (recursive), including the folder provided.
