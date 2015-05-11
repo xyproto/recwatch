@@ -9,6 +9,8 @@ import (
 	"github.com/go-fsnotify/fsnotify"
 )
 
+type Event fsnotify.Event
+
 type RecursiveWatcher struct {
 	*fsnotify.Watcher
 	Files   chan string
