@@ -58,7 +58,7 @@ func Subfolders(path string) (paths []string) {
 		if info.IsDir() {
 			name := info.Name()
 			// skip folders that begin with a dot
-			if shouldIgnoreFile(name) && name != "." && name != ".." {
+			if ShouldIgnoreFile(name) && name != "." && name != ".." {
 				return filepath.SkipDir
 			}
 			paths = append(paths, newPath)
@@ -68,8 +68,8 @@ func Subfolders(path string) (paths []string) {
 	return paths
 }
 
-// shouldIgnoreFile determines if a file should be ignored.
+// ShouldIgnoreFile determines if a file should be ignored.
 // File names that begin with "." or "_" are ignored by the go tool.
-func shouldIgnoreFile(name string) bool {
+func ShouldIgnoreFile(name string) bool {
 	return strings.HasPrefix(name, ".") || strings.HasPrefix(name, "_")
 }
