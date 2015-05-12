@@ -1,5 +1,5 @@
 # recwatch
 
-Watch filesystem changes recursively.
+Package for watching filesystem changes recursively.
 
-Forked from [looper](https://github.com/nathany/looper).
+Refactored out from [looper](https://github.com/nathany/looper) (by Nathan Youngman).
