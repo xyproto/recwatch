@@ -17,6 +17,10 @@ type RecursiveWatcher struct {
 	Folders chan string
 }
 
+func (e Event) String() string {
+	return fsnotify.Event(e).String()
+}
+
 func NewRecursiveWatcher(path string) (*RecursiveWatcher, error) {
 	folders := Subfolders(path)
 	if len(folders) == 0 {
