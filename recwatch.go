@@ -1,3 +1,4 @@
+// Package recwatch provides a way to watch directories recursively with fsnotify
 package recwatch
 
 import (
