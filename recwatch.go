@@ -10,13 +10,15 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-type Event fsnotify.Event
+type (
+	Event fsnotify.Event
 
-type RecursiveWatcher struct {
-	*fsnotify.Watcher
-	Files   chan string
-	Folders chan string
-}
+	RecursiveWatcher struct {
+		*fsnotify.Watcher
+		Files   chan string
+		Folders chan string
+	}
+)
 
 func (e Event) String() string {
 	return fsnotify.Event(e).String()
