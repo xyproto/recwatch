@@ -1,7 +1,3 @@
-// Package recwatch provides a way to watch directories recursively with fsnotify
-
-// +build gccgo
-
 package recwatch
 
 import (
@@ -9,20 +5,6 @@ import (
 	"path/filepath"
 	"strings"
 )
-
-type RecursiveWatcher struct {
-	_       interface{}
-	Files   chan string
-	Folders chan string
-}
-
-func NewRecursiveWatcher(path string) (*RecursiveWatcher, error) {
-	return nil, nil
-}
-
-func (watcher *RecursiveWatcher) AddFolder(folder string) error {
-	return nil
-}
 
 // Subfolders returns a slice of subfolders (recursive), including the folder provided.
 func Subfolders(path string) (paths []string) {
