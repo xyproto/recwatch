@@ -1,8 +1,7 @@
-// Package recwatch provides a way to watch directories recursively with fsnotify
-
-package recwatch
-
 // +build !gccgo
+
+// Package recwatch provides a way to watch directories recursively with fsnotify
+package recwatch
 
 import (
 	"errors"
