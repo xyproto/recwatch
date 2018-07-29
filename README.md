@@ -8,7 +8,6 @@ Watch filesystem changes recursively.
 
 * Can be used for watching filesystem changes recursively.
 * Can be used for setting up a SSE ([server-sent events](https://en.wikipedia.org/wiki/Server-sent_events)) server, for serving filesystem changes as events.
-* Currently does not work with `gccgo`, but works fine with the regular `go` compiler. I think this may be an issue with `gccgo`.
 
 ## General info
 
