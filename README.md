@@ -13,4 +13,4 @@ Watch filesystem changes recursively.
 
 * Version: 0.1
 * License: Simplified BSD
-* Author: Alexander F. Rødseth \&lt;xyproto@archlinux.org&gt;
+* Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
