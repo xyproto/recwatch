@@ -42,6 +42,17 @@ var Exists = func(path string) bool {
 	return err == nil
 }
 
+// SetVerbose can be used to enable or disable logging of incoming events
+func SetVerbose(enabled bool) {
+	if enabled {
+		LogInfo = func(msg string) {
+			log.Println(msg)
+		}
+	} else {
+		LogInfo = nil
+	}
+}
+
 // RemoveOldEvents can remove old filesystem events, after a certain duration.
 // Needs to be called within a mutex!
 func RemoveOldEvents(events *TimeEventMap, maxAge time.Duration) {
