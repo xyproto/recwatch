@@ -1,6 +1,4 @@
-// +build !gccgo
-
-// Package recwatch provides a way to watch directories recursively with fsnotify
+// Package recwatch provides a way to watch directories recursively, using fsnotify
 package recwatch
 
 import (
@@ -9,32 +7,27 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-type (
-	Event fsnotify.Event
-
-	RecursiveWatcher struct {
-		*fsnotify.Watcher
-		Files   chan string
-		Folders chan string
-	}
-)
-
-func (e Event) String() string {
-	return fsnotify.Event(e).String()
+// RecursiveWatcher keeps the data for watching files and directories
+type RecursiveWatcher struct {
+	*fsnotify.Watcher
+	Files   chan string
+	Folders chan string
 }
 
+// NewRecursiveWatcher creates a new RecursiveWatcher.
+// Takes a path to a directory to watch.
 func NewRecursiveWatcher(path string) (*RecursiveWatcher, error) {
 	folders := Subfolders(path)
 	if len(folders) == 0 {
-		return nil, errors.New("No folders to watch.")
+		return nil, errors.New("No directories to watch.")
 	}
 
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		return nil, err
 	}
-	rw := &RecursiveWatcher{Watcher: watcher}
 
+	rw := &RecursiveWatcher{Watcher: watcher}
 	rw.Files = make(chan string, 10)
 	rw.Folders = make(chan string, len(folders))
 
@@ -46,6 +39,7 @@ func NewRecursiveWatcher(path string) (*RecursiveWatcher, error) {
 	return rw, nil
 }
 
+// AddFolder adds a directory to watch, non-recursively
 func (watcher *RecursiveWatcher) AddFolder(folder string) error {
 	if err := watcher.Add(folder); err != nil {
 		return err

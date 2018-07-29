@@ -6,24 +6,23 @@ import (
 	"strings"
 )
 
-// Subfolders returns a slice of subfolders (recursive), including the folder provided.
+// Subfolders returns a slice of subfolders (recursive), including the provided path
 func Subfolders(path string) (paths []string) {
 	filepath.Walk(path, func(newPath string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
-
 		if info.IsDir() {
 			name := info.Name()
-			// skip folders that begin with a dot
-			if ShouldIgnoreFile(name) && name != "." && name != ".." {
-				return filepath.SkipDir
+			// Skip folders that begin with "_" or "."
+			if ShouldIgnoreFile(name) {
+				return filepath.SkipDir // returns to filepath.Walk
 			}
 			paths = append(paths, newPath)
 		}
-		return nil
+		return nil // returns to filepath.Walk
 	})
-	return paths
+	return paths // return collected paths
 }
 
 // ShouldIgnoreFile determines if a file should be ignored.
