@@ -12,8 +12,7 @@ import (
 )
 
 func plural(passed time.Duration) string {
-	sec := passed.Seconds()
-	if sec < 1 || sec >= 2 {
+	if passed.Seconds() != 1 {
 		return "s"
 	}
 	return ""
