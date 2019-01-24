@@ -6,7 +6,7 @@ Watch filesystem changes recursively.
 
 `recwatch` started out as a fork of [looper](https://github.com/nathany/looper) (by Nathan Youngman), but most of the code is now original.
 
-## Features and limitations
+## Features
 
 * Can be used for watching filesystem changes recursively.
 * Can be used for setting up a SSE ([server-sent events](https://en.wikipedia.org/wiki/Server-sent_events)) server, for serving filesystem changes as events.
