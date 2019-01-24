@@ -1,5 +1,7 @@
 # recwatch
 
+[![Build Status](https://travis-ci.org/xyproto/recwatch.svg?branch=master)](https://travis-ci.org/xyproto/recwatch)
+
 Watch filesystem changes recursively.
 
 `recwatch` started out as a fork of [looper](https://github.com/nathany/looper) (by Nathan Youngman), but most of the code is now original.
