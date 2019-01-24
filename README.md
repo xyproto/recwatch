@@ -96,6 +96,6 @@ func main() {
 
 ## General info
 
-* Version: 0.2
+* Version: 0.3.0
 * License: Simplified BSD
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
