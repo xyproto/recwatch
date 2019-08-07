@@ -11,13 +11,15 @@ Watch filesystem changes recursively.
 * Can be used for watching filesystem changes recursively.
 * Can be used for setting up a SSE ([server-sent events](https://en.wikipedia.org/wiki/Server-sent_events)) server, for serving filesystem changes as events.
 
-## Example use
+## Example usage
+
+### Short example
 
 ```go
 recwatch.EventServer(pathToWatch, "*", eventAddr, eventPath, refreshDuration)
 ```
 
-In a larger context:
+### Longer example
 
 ```go
 package main
