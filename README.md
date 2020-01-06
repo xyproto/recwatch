@@ -108,6 +108,6 @@ func main() {
 
 ## General info
 
-* Version: 0.3.0
+* Version: 1.0.1
 * License: Simplified BSD
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
