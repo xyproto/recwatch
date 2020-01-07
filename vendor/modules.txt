@@ -1,4 +1,6 @@
 # github.com/fsnotify/fsnotify v1.4.7
 github.com/fsnotify/fsnotify
+# github.com/xyproto/symwalk v1.1.1
+github.com/xyproto/symwalk
 # golang.org/x/sys v0.0.0-20200106162015-b016eb3dc98e
 golang.org/x/sys/unix
