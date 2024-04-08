@@ -13,6 +13,7 @@ Watch filesystem changes recursively.
 * Filenames beginning with `.` or `_` are ignored.
 * The file search is concurrent.
 * Will follow symlinks.
+* Note that some systems may have a very low `ulimit` which may limit how many files can be watched at the same time.
 
 ## Example usage
 
