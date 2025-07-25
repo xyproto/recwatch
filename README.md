@@ -1,6 +1,6 @@
 # recwatch
 
-[![Build Status](https://travis-ci.com/xyproto/recwatch.svg?branch=master)](https://travis-ci.com/xyproto/recwatch)
+[![Build](https://github.com/xyproto/recwatch/actions/workflows/build.yml/badge.svg)](https://github.com/xyproto/recwatch/actions/workflows/build.yml)
 
 Watch filesystem changes recursively.
 
