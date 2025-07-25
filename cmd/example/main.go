@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/xyproto/recwatch"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/xyproto/recwatch"
 )
 
 func plural(passed time.Duration) string {
@@ -56,7 +56,7 @@ func main() {
 		}
 		log.Println("Creating and writing to " + tempFileName)
 		data := []byte("Hi\n")
-		err := ioutil.WriteFile(tempFileName, data, 0644)
+		err := os.WriteFile(tempFileName, data, 0644)
 		if err != nil {
 			log.Fatal(err)
 		}
